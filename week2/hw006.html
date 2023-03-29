@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>도형 서식 폼 만들기</title>
+</head>
+<body>
+<h3>도형 서식 폼 만들기</h3>
+<hr>
+<form>
+<fieldset>
+    <legend>도형 서식 입력</legend>
+    <label>선종류 <select size=3>
+                    <option>선없음</option>
+                    <option>실선</option>
+                    <option>점선</option>
+                 </select>
+    <!-- 
+        select 태그를 통해 드롭다운 리스트를 생성합니다.
+        size 속성을 통해 3개를 만들 수 있으며 이 값은 option 태그로 정의합니다.
+     -->
+    </label><br><br>
+    
+    <label>선두께 <input type="number" min="1" max="50" step="1"></label>
+    <!-- 
+        라벨값을 삽입하고 입력값 타입을 숫자로 설정합니다.
+    -->
+    
+    <label>선색 <input type="color" value="#00bfff"></label><br><br>
+    <!-- 
+        입력값 타입을 색상으로 설정합니다. 기본 색상은 #00bfff 로 들어갑니다.
+     -->
+    <label>투명도(0~100) : <input type="range" list="transparency" min="0" max="100">
+        <!-- 
+            입력값을 범위로 설정합니다. 최소는 0 , 최대는 100
+            list속성을 통해 옵션들을 포함하고 있는 datalist 요소들을 명시할 수 있습니다.
+         -->
+    
+    <datalist id="transparency">
+         <option value="0" label="투명">
+         <option value="50" label="중간">
+         <option value="100" label="불투명">
+        
+    </datalist></label><br>
+    <!-- 
+        옵션들을 포함하고 있는 datalist 옵션값리스트입니다.
+     -->
+</fieldset>
+</form>
+</body>
+</html>
