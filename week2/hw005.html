@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>주문서 작성하기</title>
+	<style>
+		.container {
+			width:600px;
+			margin: 100px auto;
+		}
+        /* 
+            컨테이서 클래스 css 속성 설정
+            폭 600 px , 
+            marigin: 0 auto -> 중앙 정렬
+        */
+		ul { 
+			list-style-type: none; 
+		}
+        /* 
+            순서없는 리스트 출력 방식 설정
+            : 불렛 출력 안함
+        */
+		label.title { 
+			font-weight: bold; 
+			width: 80px; 
+			float: left; 
+		}
+        /* 
+            라벨 속성 설정 (볼드체 , 폭 80 , 왼쪽 정렬)
+        */
+		div.centered { 
+			text-align: center; 
+		}
+        /* 
+            div태그의 centered 클래스 css 속성 지정
+            : 텍스트 가운데 지정
+        */
+		fieldset { 
+			margin: 15px 20px; 
+		}
+        /* 
+            필드셋 태그 속정 지정
+            : 상하 마진 : 15px
+            : 좌우 마진 : 20px
+        */
+			fieldset legend { 
+				font-weight: bold; 
+				font-size: 18px; 
+				color: purple; 
+			}
+        /* 
+            필드셋의 캡션(legend) 태그 css 속성 설정(볼드체,폰트 18px ,색깔 보라색)
+        */
+		ul li { 
+			margin-bottom: 10px; 
+		}
+	</style>	
+</head>
+<body>
+	<div class="container">
+        <!-- 
+            클래스를 "container"로 지정
+            css 속성 적용
+         -->
+		<h1>상품 주문서</h1>
+		<form>
+            <!-- 입력폼 삽임 -->
+			<fieldset>
+                <!-- 입력폼 캡션 삽입 -->
+				<legend>개인 정보</legend>
+                <!-- 필드셋 캡션 삽입 -->
+				<ul>
+					<li>
+						<label for="uname" class="title">이름</label>
+						<input type="text" id="uname" placeholder="여백없이 입력" required>
+                        <!-- 
+                            text 속성 : 글자
+                         -->
+					</li>
+					<li>
+						<label for="tel1" class="title">연락처</label>
+						<input type="tel" id="tel1" placeholder="연락가능한 번호">
+                        <!-- 
+                            tel 속성 : 전화번호
+                         -->
+					</li>
+                    <!-- 
+                        리스트로 입력 폼 삽입 후 라벨 지정
+                        placeholde로 기본값 설정
+                     -->
+				</ul>
+			</fieldset>
+			<fieldset>
+				<legend>배송지 정보</legend>
+				<ul>
+					<li>
+						<label for="addr" class="title">주소</label>
+						<input type="text" size="40" id="addr" required>
+					</li>
+					<li>
+						<label for="tel2" class="title">전화번호</label>
+						<input type="tel" id="tel2" required>
+					</li>
+					<li>
+						<label for="comment" class="title">메 모</label>
+						<textarea cols="40" rows="3" id="comment"></textarea>
+					</li>
+                    <!-- 
+                        리스트로 입력 폼 삽입 후 라벨 지정
+                     -->
+				</ul>
+			</fieldset>
+			<fieldset>
+				<legend>주문 정보</legend>
+				<ul>
+					<li>
+						<label><input type="checkbox">과테말라 안티구아 (100g) </label>
+						<label><input type="number" value="0" min="0" max="5">개 </label>
+					</li>
+					<li>
+						<label><input type="checkbox">인도네시아 만델링 (100g) </label>
+						<label><input type="number" value="0" min="0" max="5">개 </label>
+					</li>
+					<li>
+						<label><input type="checkbox">탐라는도다(블렌딩) (100g) </label>
+						<label><input type="number" value="0" min="0" max="5">개 </label>
+					</li>
+                    <!-- 
+                        리스트로 입력 폼 삽입 후 라벨 지정
+                        입력값 체크박스로 설정
+                     -->
+				</ul>
+			</fieldset>
+			<div class="centered">
+				<input type="submit" value="주문하기">
+				<input type="reset" value="다시 작성">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
