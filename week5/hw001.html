@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>별 문자 출력하기</title>
+	<script>
+		function printstar(num) {
+			n = parseInt(num);
+            // 프롬트프는 무조건 문자열 형태로 입력을 받기 때문에 정수 형태로 변환합니다.
+			if(isNaN(n)) {
+				document.write("입력 오류 입니다.");
+			}
+            // 만약 정수가 아닌 값을 입력했다면 오류를 반환합니다.
+			for(i = 0; i < n; i++) {
+				for(j = 0; j <= i; j++) {
+					document.write("*");
+				}
+				document.write("<br>")
+			}
+            // 이중 for문을 통해 document.write로 별을 출력합니다.
+		}
+	</script>
+</head>
+<body>
+	<h3>별 문자 출력하기</h3>
+	<hr>
+	<script>
+		var num = prompt("정수를 입력하세요","1");
+        // 프롬프트로 정수를 입력받습니다.
+		printstar(num);
+	</script>
+</body>
+</html>
