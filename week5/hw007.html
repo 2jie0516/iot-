@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>z-index 프로퍼티</title>
+<style>
+div { position : absolute; }
+img { position : absolute; }
+#spadeA { left : 10px; top : 30px; } 
+#spade2 { left : 10px; top : 30px; }
+#spade3 { left : 10px; top : 30px; }
+#spade7 { left : 10px; top : 30px; }
+</style></head>
+<body>
+<h3>z-index 프로퍼티</h3>
+<hr>
+<div>
+    <img id="spadeA" src="media/pepe1.jpg" style="z-index: 0" onclick="move()"
+        width="100" height="140" alt="스페이드A">
+    <img id="spade2" src="media/pepe2.png" style="z-index: 1" onclick="move()"
+        width="100" height="140" alt="스페이드2">
+    <img id="spade3" src="media/pepe3.jpg" style="z-index: 2" onclick="move()"
+        width="100" height="140" alt="스페이드3">
+    <img id="spade7" src="media/pepe4.png" style="z-index: 3" onclick="move()"
+        width="100" height="140" alt="스페이드7">
+    <!-- 
+        맨 위에 이미지를 클릭하면 move 함수를 실행시킵니다.
+     -->
+</div>
+<script>
+    function move(){
+    let tags = document.getElementsByTagName("img");
+    for(var i=0;i<tags.length;i++){
+        if(tags[i].style.zIndex == 4){
+            tags[i].style.zIndex = 0;
+        }
+        else{
+            tags[i].style.zIndex ++;
+        }
+        
+        }
+        // z-index를 하나씩 증가시키는 데 맨 위 인덱스는 0으로 보냅니다.
+    }
+</script>
+</body>
+</html>
