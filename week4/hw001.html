@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>끝말잇기</title>
+</head>
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어: <span id="word"></span></div>
+    <input type="text">
+    <button>입력</button>
+    <script>
+        const number = Number(prompt('몇 명이 참가하나요?'));
+        const $button = document.querySelector('button');
+        const $input = document.querySelector('input');
+        const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
+        let word;//제시어
+        let newWord;//다음 참가자가 입력한 단어
+
+        const onClickButton = () => {//버튼을 클릭했을 때 수행되는 함수
+            if(!word) {
+                //만약 제시어가 비어있으면(첫번째 참가자라면)
+                word = newWord; //입력한 단어를 제시어로 설정
+                $word.textContent = word;// 제시어(span태그) 에 현재 제시어 출력
+                $input.value = '';//입력창 초기화
+                const order = Number($order.textContent);
+                if (order === number) {
+                    $order.textContent = 1;// 마지막 턴까지 돌았으면 다시 첫번째로
+                } else {
+                    $order.textContent = order + 1; // 다음 턴으로 넘김
+                }
+                $input.focus();// 입력창에 커서 포커싱
+            } else {
+                // 입력된 제시어가 있으면 (첫번째 참가작가 아니라면)
+                if (word[word.length-1] === newWord[0]) {
+                    //제시어의 마지막 글자와 새로운 단어의 첫 글자가 일치한다면(문제가 없으면)
+                    word = newWord; // 제시어 변경
+                    $word.textContent = word;// 제시어(span태그) 에 현재 제시어 출력
+                    $input.value = '';// 입력창 초기화
+                    const order = Number($order.textContent);
+                    if (order === number) {
+                    $order.textContent = 1;//마지막 턴까지 돌았으면 다시 첫번째로
+                    } else {
+                        $order.textContent = order + 1; // 다음 턴으로 넘김
+                    }
+                    $input.focus();//입력창에 커서 포커싱
+                } else {
+                    //잘못된 단어를 입력하면
+                    alert('틀렸습니다!')
+                    $input.value = '';//입력창 초기화
+                    $input.focus();//입력창에 커서 포커싱
+                }
+            }
+        };
+
+        const onInput = (event) => {
+            newWord = event.target.value;
+        };
+
+        $button.addEventListener('click', onClickButton);
+        $input.addEventListener('input', onInput);
+        </script>
+</body>
+</html>
