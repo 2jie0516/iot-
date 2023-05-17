@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>산수를 풀어 봅시다</title>
+<style>
+td {
+padding-left: 10px;
+padding-right: 10px;
+}
+/* 
+td 태크에 padding 속성을 설정한다.
+*/
+</style>
+<script>
+		var show=null, count;
+		function ontime()	
+		// 시간을 카운트 해준다
+		// 맨 처음 버튼을 누를 시에 이 함수가 호출된다.
+		{
+			var one = document.getElementsByClassName("one");
+			document.getElementById("grade").innerHTML = 0;
+			// 점수 창에는 기본값으로 0을 띄워준다.
+			var time = document.getElementById("time");
+			// "time" 이라는 id값을 가지는 요소를 불러온다.
+			one[0].style.textDecoration = "none";
+			one[1].style.textDecoration = "none";
+			one[2].style.textDecoration = "none";
+			one[3].style.textDecoration = "none";
+			// 문제의 실선을 제거한다.
+			count = 10;
+			// 카운트는 10초로 설정한다.
+			if(show != null)
+				// show가 null 이 아닐 경우는 이 함수가 처음 실행된 것이 아니란 것을 의미한다.
+				// 즉 최소 2번째 시도라는 것
+				clearTimeout(show);
+				// 시간 함수(setTimeout)를 초기화한다,
+			outtime(time);
+			// time 요소를 outtime 함수에 넘겨주고 시간을 카운트한다.
+		}
+		function outtime(cls)	//점점 시간이 줄어드는 함수
+		{
+			count--;
+			// 카운트를 감소시킨다.
+			cls.innerHTML = count;
+			// innerHTML 속성을 이용해서 카운트를 반영한다.
+			if(count != 0)
+				show = setTimeout("outtime(time)", 1000);
+			// 카운트가 0이 아니라면 다시 setTimeout 함수를 호출해서 카운트를 한다(딜레이 1초), 
+			else 
+				calc();	
+			// 카운트가 0이라면 문제를 채점한다.
+		}
+		function make()	//문제 만들기 함수
+		{
+			var one = document.getElementsByClassName("one");
+			
+			for(i=0; i<one.length; i++)
+			{
+				var num1 = Math.floor(Math.random()*99);	
+				//첫 번째 랜덤 넘버를 생성한다.
+				var num2 = Math.floor(Math.random()*99);	
+				//두 번째 랜던 넘버를 생성한다.
+				var op = Math.floor(Math.random()*4);		
+				// 연산자를 랜덤으로 하기 위해서 0~3까지의 정수를 랜덤으로 생성하고 를 하고 switch를 써서 연산자를 정한다.
+				var operator;
+				
+				switch(op)
+				{
+					case 0 : operator = "+"; 
+						break;
+					case 1 : operator = "-"; 
+						break;
+					case 2 : operator = "*"; 
+						break;
+					case 3 : operator = "/"; 
+						break;
+				}
+				one[i].innerHTML = num1 + operator + num2;	
+				// 각 요소에 문제를 출력해준다.
+			}
+		}
+		function calc()
+		// 카운트가 0이 되면 문제를 채점한다.
+		{
+			var countgrade = 0;	
+			// 점수 변수를 0으로 초기화
+			var one = document.getElementsByClassName("one");
+			var two = document.getElementsByClassName("two");
+			// 
+			for(i=0; i<one.length; i++)
+			{
+				var question = one[i].innerHTML;
+				var answer = two[i].value;
+				var correct = Math.floor(eval(question));
+				// eval 함수를 이용하여 수식을 계산하고 정답값에 넣어준다.
+				if(parseInt(answer) == correct)
+					countgrade += 1;
+					// 입력값과 정답이 동일하면 점수를 +1 해준다.
+				else if(answer=="")	
+					one[i].style.textDecoration = "line-through";
+					// 입력값이 비어있으면 문제에 빗금을 친다
+				else if(isNaN(answer))
+					one[i].style.textDecoration = "line-through";
+					// 숫자가 아닌 값을 입력했다면 문제에 빗금을 친다.
+				else
+					one[i].style.textDecoration = "line-through";
+					// 정답 외 값을 입력한 모든 경우에 빗금을 친다.
+			}
+			document.getElementById("grade").innerHTML = countgrade;
+			// grade id값을 가진 요소에 점수를 출력한다.
+		}
+</script>
+</head>
+<body onload="ontime(), make()">
+    <h3>산수 문제를 풀어 봅시다.</h3>
+    문제는 자동으로 생성되며, 10초가 지나면 자동 채점됩니다.
+    <div>
+        남은 시간 <span id="time">0</span>
+    </div>
+    <hr>
+    <form>
+        <table>
+			<tr>	
+				<td class="one"></td>
+				<td><input class="two" type="text" size="6"></td>
+			</tr>
+			<tr>
+				<td class="one"></td>
+				<td><input class="two" type="text" size="6"></td>
+			</tr>
+			<tr>
+				<td class="one"></td>
+				<td><input class="two" type="text" size="6"></td>
+			</tr>
+			<tr>
+				<td class="one"></td>
+				<td><input class="two" type="text" size="6"></td>
+			</tr>
+			<tr>
+				<td><button type="button" onclick="ontime(), make()">다시</button></td>
+				<td><span id="grade">0</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+		</table>
+    </form>
+</body>
+</html>
